@@ -6,5 +6,11 @@ return [
     "categoryPageTitle" => "Категории документов",
 
     // Admin
+    "customDocumentCategoryModel" => null,
+    "customDocumentCategoryModelObserver" => null,
+
     "customAdminDocumentTreeController" => null,
+
+    // Facades
+    "customDocumentTreeActionsManager" => null,
 ];

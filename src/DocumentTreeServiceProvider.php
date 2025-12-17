@@ -2,6 +2,10 @@
 
 namespace GIS\DocumentTree;
 
+use GIS\DocumentTree\Helpers\DocumentCategoryActionsManager;
+use GIS\DocumentTree\Models\DocumentCategory;
+use GIS\DocumentTree\Observers\DocumentCategoryObserver;
+use GIS\PriceList\Interfaces\DocumentCategoryInterface;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -34,10 +38,16 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
     protected function initFacades(): void
     {
+        $this->app->singleton("document-category-actions", function () {
+            $managerClass = config("document-tree.customDocumentTreeActionsManager") ?? DocumentCategoryActionsManager::class;
+            return new $managerClass();
+        });
     }
 
     protected function bindInterfaces(): void
     {
+        $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
+        $this->app->bind(DocumentCategoryInterface::class, $modelClass);
     }
 
     protected function expandConfiguration(): void
@@ -52,6 +62,9 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
     protected function observeModels(): void
     {
+        $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
+        $observerClass = config("document-tree.customDocumentCategoryModelObserver") ?? DocumentCategoryObserver::class;
+        $modelClass::observe($observerClass);
     }
 
     protected function setPolicies(): void
