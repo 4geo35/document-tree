@@ -3,13 +3,16 @@
 namespace GIS\DocumentTree\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+use GIS\DocumentTree\Models\DocumentCategory;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class DocumentTreeController extends Controller
 {
     public function index(): View
     {
+        $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
+        Gate::authorize("viewAny", $modelClass);
         return view("dt::admin.document-tree.index");
     }
 }

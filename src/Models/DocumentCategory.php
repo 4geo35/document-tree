@@ -3,7 +3,7 @@
 namespace GIS\DocumentTree\Models;
 
 use GIS\Metable\Traits\ShouldMeta;
-use GIS\PriceList\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use GIS\TraitsHelpers\Traits\ShouldHumanDate;
 use GIS\TraitsHelpers\Traits\ShouldHumanPublishDate;
 use GIS\TraitsHelpers\Traits\ShouldMarkdown;

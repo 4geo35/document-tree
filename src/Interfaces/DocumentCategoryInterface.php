@@ -1,6 +1,6 @@
 <?php
 
-namespace GIS\PriceList\Interfaces;
+namespace GIS\DocumentTree\Interfaces;
 
 use ArrayAccess;
 use GIS\Metable\Interfaces\ShouldMetaInterface;

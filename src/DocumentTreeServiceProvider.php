@@ -9,6 +9,7 @@ use GIS\PriceList\Interfaces\DocumentCategoryInterface;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use GIS\DocumentTree\Livewire\Admin\DocumentCategories\IndexWire as AdminDocumentCategoriesIndexWire;
 
 class DocumentTreeServiceProvider extends ServiceProvider
 {
@@ -56,7 +57,11 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
         $um = app()->config["user-management"];
         $permissions = $um["permissions"];
-        // TODO: add document policy
+        $permissions[] = [
+            "title" => $dt["documentCategoryTitle"],
+            "key" => $dt["documentCategoryKey"],
+            "policy" => $dt["documentCategory"],
+        ];
         app()->config["user-management.permissions"] = $permissions;
     }
 
@@ -69,9 +74,15 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
     protected function setPolicies(): void
     {
+        Gate::policy(config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class, config("document-tree.documentCategory"));
     }
 
     protected function addLivewireComponents(): void
     {
+        $component = config("document-tree.customAdminDocumentCategoryListComponent");
+        Livewire::component(
+            "dt-admin-document-category-list",
+            $component ?? AdminDocumentCategoriesIndexWire::class
+        );
     }
 }
