@@ -5,7 +5,7 @@ namespace GIS\DocumentTree;
 use GIS\DocumentTree\Helpers\DocumentCategoryActionsManager;
 use GIS\DocumentTree\Models\DocumentCategory;
 use GIS\DocumentTree\Observers\DocumentCategoryObserver;
-use GIS\PriceList\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;

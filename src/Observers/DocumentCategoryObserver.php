@@ -4,7 +4,7 @@ namespace GIS\DocumentTree\Observers;
 
 use GIS\DocumentTree\Facades\DocumentCategoryActions;
 use GIS\DocumentTree\Models\DocumentCategory;
-use GIS\PriceList\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 
 class DocumentCategoryObserver
 {

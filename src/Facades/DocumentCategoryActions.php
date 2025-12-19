@@ -3,7 +3,7 @@
 namespace GIS\DocumentTree\Facades;
 
 use GIS\DocumentTree\Helpers\DocumentCategoryActionsManager;
-use GIS\PriceList\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use Illuminate\Support\Facades\Facade;
 
 /**

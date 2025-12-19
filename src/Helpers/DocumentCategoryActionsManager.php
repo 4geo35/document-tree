@@ -3,7 +3,8 @@
 namespace GIS\DocumentTree\Helpers;
 
 use GIS\DocumentTree\Models\DocumentCategory;
-use GIS\PriceList\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
+use GIS\TraitsHelpers\Interfaces\ShouldTreeInterface;
 use GIS\TraitsHelpers\Traits\ManagerTreeTrait;
 
 class DocumentCategoryActionsManager
@@ -23,6 +24,17 @@ class DocumentCategoryActionsManager
             $child->update([
                 "published_at" => null,
             ]);
+        }
+    }
+
+    protected function expandItemData(&$data, ShouldTreeInterface $category): void
+    {
+        $data["published_at"] = $category->published_at ?? null;
+        $showNested = (bool)$category->show_nested;
+        $data["show_nested"] = $showNested;
+        $data["webTitle"] = $data["title"];
+        if ($showNested) {
+            $data["title"] .= " (Раскрыто)";
         }
     }
 }

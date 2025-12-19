@@ -4,6 +4,7 @@ return [
     "prefix" => "documents",
     "pageTitle" => "Документы",
     "categoryPageTitle" => "Категории документов",
+    "singlePage" => false,
 
     // Admin
     "customDocumentCategoryModel" => null,
