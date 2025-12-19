@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use GIS\DocumentTree\Livewire\Admin\DocumentCategories\IndexWire as AdminDocumentCategoriesIndexWire;
+use GIS\DocumentTree\Livewire\Admin\DocumentCategories\ShowWire as AdminDocumentCategoriesShowWire;
 
 class DocumentTreeServiceProvider extends ServiceProvider
 {
@@ -79,10 +80,16 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
     protected function addLivewireComponents(): void
     {
-        $component = config("document-tree.customAdminDocumentCategoryListComponent");
+        $component = config("document-tree.customAdminDocumentCategoryIndexComponent");
         Livewire::component(
-            "dt-admin-document-category-list",
+            "dt-admin-document-category-index",
             $component ?? AdminDocumentCategoriesIndexWire::class
+        );
+
+        $component = config("document-tree.customAdminDocumentCategoryShowComponent");
+        Livewire::component(
+            "dt-admin-document-category-show",
+            $component ?? AdminDocumentCategoriesShowWire::class
         );
     }
 }

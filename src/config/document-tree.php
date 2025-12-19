@@ -15,6 +15,10 @@ return [
     // Facades
     "customDocumentTreeActionsManager" => null,
 
+    // Components
+    "customAdminDocumentCategoryIndexComponent" => null,
+    "customAdminDocumentCategoryShowComponent" => null,
+
     // Policy
     "documentCategoryTitle" => "Управление категориями документов",
     "documentCategory" => \GIS\DocumentTree\Policies\DocumentCategoryPolicy::class,
