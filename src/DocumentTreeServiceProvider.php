@@ -3,9 +3,11 @@
 namespace GIS\DocumentTree;
 
 use GIS\DocumentTree\Helpers\DocumentCategoryActionsManager;
+use GIS\DocumentTree\Models\Document;
 use GIS\DocumentTree\Models\DocumentCategory;
 use GIS\DocumentTree\Observers\DocumentCategoryObserver;
 use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
+use GIS\DocumentTree\Observers\DocumentObserver;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -63,6 +65,11 @@ class DocumentTreeServiceProvider extends ServiceProvider
             "key" => $dt["documentCategoryKey"],
             "policy" => $dt["documentCategory"],
         ];
+        $permissions[] = [
+            "title" => $dt["documentTitle"],
+            "key" => $dt["documentKey"],
+            "policy" => $dt["document"],
+        ];
         app()->config["user-management.permissions"] = $permissions;
     }
 
@@ -71,11 +78,17 @@ class DocumentTreeServiceProvider extends ServiceProvider
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
         $observerClass = config("document-tree.customDocumentCategoryModelObserver") ?? DocumentCategoryObserver::class;
         $modelClass::observe($observerClass);
+
+        $modelClass = config("document-tree.customDocumentModel") ?? Document::class;
+        $observerClass = config("document-tree.customDocumentModelObserver") ?? DocumentObserver::class;
+        $modelClass::observe($observerClass);
     }
 
     protected function setPolicies(): void
     {
         Gate::policy(config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class, config("document-tree.documentCategory"));
+
+        Gate::policy(config("document-tree.customDocumentModel") ?? Document::class, config("document-tree.document"));
     }
 
     protected function addLivewireComponents(): void

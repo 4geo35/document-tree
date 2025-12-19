@@ -26,4 +26,8 @@ return [
     "documentCategoryTitle" => "Управление категориями документов",
     "documentCategory" => \GIS\DocumentTree\Policies\DocumentCategoryPolicy::class,
     "documentCategoryKey" => "document_categories",
+
+    "documentTitle" => "Управление документами",
+    "document" => \GIS\DocumentTree\Policies\DocumentPolicy::class,
+    "documentKey" => "documents",
 ];
