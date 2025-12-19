@@ -2,6 +2,7 @@
 
 namespace GIS\DocumentTree\Models;
 
+use GIS\DocumentTree\Traits\ShouldDocuments;
 use GIS\Metable\Traits\ShouldMeta;
 use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use GIS\TraitsHelpers\Traits\ShouldHumanDate;
@@ -14,7 +15,7 @@ use Illuminate\Support\Str;
 
 class DocumentCategory extends Model implements DocumentCategoryInterface
 {
-    use ShouldSlug, ShouldMeta, ShouldMarkdown, ShouldTree, ShouldHumanDate, ShouldHumanPublishDate;
+    use ShouldSlug, ShouldMeta, ShouldMarkdown, ShouldTree, ShouldHumanDate, ShouldHumanPublishDate, ShouldDocuments;
 
     protected $fillable = [
         "title",

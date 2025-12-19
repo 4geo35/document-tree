@@ -18,7 +18,7 @@ use Illuminate\Contracts\Support\Jsonable;
 
 interface DocumentCategoryInterface extends Arrayable, ArrayAccess, CanBeEscapedWhenCastToString,
     HasBroadcastChannel, Jsonable, JsonSerializable, QueueableEntity, Stringable, UrlRoutable,
-    ShouldMetaInterface, ShouldTreeInterface
+    ShouldMetaInterface, ShouldTreeInterface, ShouldDocumentsInterface
 {
     public function parent(): BelongsTo;
     public function children(): HasMany;

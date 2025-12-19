@@ -10,6 +10,9 @@ return [
     "customDocumentCategoryModel" => null,
     "customDocumentCategoryModelObserver" => null,
 
+    "customDocumentModel" => null,
+    "customDocumentModelObserver" => null,
+
     "customAdminDocumentTreeController" => null,
 
     // Facades
