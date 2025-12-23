@@ -5,6 +5,7 @@
     <div class="space-y-indent">
         <livewire:dt-admin-document-category-show :$category />
         <livewire:dt-admin-document-list :model="$category" />
+        <livewire:dt-admin-document-signature-list />
         <livewire:ma-metas :model="$category" />
     </div>
 </x-admin-layout>

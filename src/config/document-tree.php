@@ -26,6 +26,8 @@ return [
 
     "customAdminDocumentListComponent" => null,
 
+    "customAdminDocumentSignatureIndexComponent" => null,
+
     // Policy
     "documentCategoryTitle" => "Управление категориями документов",
     "documentCategory" => \GIS\DocumentTree\Policies\DocumentCategoryPolicy::class,

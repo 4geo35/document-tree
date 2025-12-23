@@ -51,11 +51,14 @@
                                 wire:click="showDelete({{ $item->id }})">
                             <x-tt::ico.trash />
                         </button>
+                        @can("update", $item)
+                            <button type="button" class="btn btn-outline-warning px-btn-x-ico ml-2"
+                                    wire:loading.attr="disabled">
+                                <x-dt::ico.draw />
+                            </button>
+                        @endcan
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td colspan="4" class="!bg-info/15"><span class="font-medium">Подписи</span></td>
             </tr>
         @endforeach
     </x-slot>

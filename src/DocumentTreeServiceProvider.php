@@ -14,6 +14,7 @@ use Livewire\Livewire;
 use GIS\DocumentTree\Livewire\Admin\DocumentCategories\IndexWire as AdminDocumentCategoriesIndexWire;
 use GIS\DocumentTree\Livewire\Admin\DocumentCategories\ShowWire as AdminDocumentCategoriesShowWire;
 use GIS\DocumentTree\Livewire\Admin\Documents\ListWire as AdminDocumentsListWire;
+use GIS\DocumentTree\Livewire\Admin\DocumentSignatures\ListWire as AdminDocumentSignaturesListWire;
 
 class DocumentTreeServiceProvider extends ServiceProvider
 {
@@ -110,6 +111,12 @@ class DocumentTreeServiceProvider extends ServiceProvider
         Livewire::component(
             "dt-admin-document-list",
             $component ?? AdminDocumentsListWire::class
+        );
+
+        $component = config("document-tree.customAdminDocumentSignatureIndexComponent");
+        Livewire::component(
+            "dt-admin-document-signature-list",
+            $component ?? AdminDocumentSignaturesListWire::class
         );
     }
 }
