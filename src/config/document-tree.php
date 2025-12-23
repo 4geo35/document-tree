@@ -13,6 +13,8 @@ return [
     "customDocumentModel" => null,
     "customDocumentModelObserver" => null,
 
+    "customDocumentSignatureModel" => null,
+
     "customAdminDocumentTreeController" => null,
 
     // Facades

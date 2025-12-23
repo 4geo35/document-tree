@@ -4,6 +4,7 @@ namespace GIS\DocumentTree\Interfaces;
 
 use ArrayAccess;
 use GIS\Fileable\Interfaces\ShouldFileInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use JsonSerializable;
 use Stringable;
@@ -19,4 +20,5 @@ interface DocumentInterface extends Arrayable, ArrayAccess, CanBeEscapedWhenCast
     ShouldFileInterface
 {
     public function documentable(): MorphTo;
+    public function signatires(): HasMany;
 }

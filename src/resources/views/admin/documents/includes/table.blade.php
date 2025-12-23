@@ -54,6 +54,9 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td colspan="4" class="!bg-info/15"><span class="font-medium">Подписи</span></td>
+            </tr>
         @endforeach
     </x-slot>
 </x-tt::table>
