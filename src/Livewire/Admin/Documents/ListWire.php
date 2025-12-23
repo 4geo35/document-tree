@@ -79,6 +79,7 @@ class ListWire extends Component
          * @var DocumentInterface $document
          */
         $document->livewireFile($this->file);
+        $this->dispatch("show-signatures", documentId: $document->id);
         $this->closeData();
         session()->flash("document-success", "Документ успешно добавлен");
     }
