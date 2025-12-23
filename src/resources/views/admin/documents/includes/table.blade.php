@@ -53,7 +53,8 @@
                         </button>
                         @can("update", $item)
                             <button type="button" class="btn btn-outline-warning px-btn-x-ico ml-2"
-                                    wire:loading.attr="disabled">
+                                    wire:loading.attr="disabled"
+                                    wire:click="showSignatures({{ $item->id }})">
                                 <x-dt::ico.draw />
                             </button>
                         @endcan

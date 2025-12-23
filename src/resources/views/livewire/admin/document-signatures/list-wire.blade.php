@@ -1,4 +1,5 @@
-<div class="{{ $document ? '' : 'hidden' }}">
+<div class="{{ $document || $documentError ? '' : 'hidden' }}">
+    <x-tt::notifications.error prefix="signature-document-" />
     @if ($document)
         <div class="card">
             <div class="card-header border-b-0">

@@ -113,6 +113,7 @@ class ListWire extends Component
         ]);
         $document->livewireFile($this->file);
         session()->flash("document-success", "Документ успешно обновлен");
+        $this->dispatch("document-updated", documentId: $this->documentId);
         $this->closeData();
     }
 
@@ -130,6 +131,7 @@ class ListWire extends Component
         if (! $document) { return; }
         if (! $this->checkAuth("delete")) { return; }
         $this->displayDelete = true;
+        $this->dispatch("document-deleted", documentId: $this->documentId);
     }
 
     public function confirmDelete(): void
@@ -166,6 +168,15 @@ class ListWire extends Component
         $this->setDocumentList();
     }
 
+    public function showSignatures(int $documentId): void
+    {
+        $this->resetFields();
+        $this->documentId = $documentId;
+        $document = $this->findModel();
+        if (! $document) { return; }
+        if (! $this->checkAuth("update")) { return; }
+        $this->dispatch("show-signatures", documentId: $documentId);
+    }
     protected function setDocumentList(): void
     {
         $this->list = $this->model->documents()
