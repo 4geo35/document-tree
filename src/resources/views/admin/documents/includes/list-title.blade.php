@@ -1,6 +1,6 @@
 @props(["modelClass"])
 <div class="flex justify-between items-center overflow-x-auto beautify-scrollbar">
-    <h3 class="font-medium text-xl text-nowrap mr-indent-half">Документы</h3>
+    <h3 class="font-medium text-2xl text-nowrap mr-indent-half">Документы</h3>
 
     <div class="flex items-center space-x-2">
         @can("create", $modelClass)
