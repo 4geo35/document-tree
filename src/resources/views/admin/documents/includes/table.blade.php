@@ -19,8 +19,9 @@
                     @if($file)
                         <ul>
                             <li>
-                                <a href="#" target="_blank" class="text-primary hover:text-primary-hover">
-                                    Просмотр (Сделать ссылку)
+                                <a href="{{ route('download-file', ['filename' => $file->file_name]) }}"
+                                   target="_blank" class="text-primary hover:text-primary-hover">
+                                    Просмотр\Скачать
                                 </a>
                             </li>
                             <li class="flex flex-nowrap space-x-indent-half">
@@ -28,13 +29,30 @@
                                 <span>{{ $file->human_size }}</span>
                             </li>
                             <li class="flex flex-nowrap space-x-indent-half">
-                                <span class="font-semibold">Mime:</span>
+                                <span class="font-semibold">Формат:</span>
                                 <span>{{ $file->mime }}</span>
                             </li>
                         </ul>
                     @endif
                 </td>
-                <td></td>
+                <td>
+                    <div class="flex items-center justify-center">
+                        <button type="button" class="btn btn-dark px-btn-x-ico rounded-e-none"
+                                @cannot("update", $item) disabled
+                                @else wire:loading.attr="disabled"
+                                @endcannot
+                                wire:click="showEdit({{ $item->id }})">
+                            <x-tt::ico.edit />
+                        </button>
+                        <button type="button" class="btn btn-danger px-btn-x-ico rounded-s-none"
+                                @cannot("delete", $item) disabled
+                                @else wire:loading.attr="disabled"
+                                @endcannot
+                                wire:click="showDelete({{ $item->id }})">
+                            <x-tt::ico.trash />
+                        </button>
+                    </div>
+                </td>
             </tr>
         @endforeach
     </x-slot>

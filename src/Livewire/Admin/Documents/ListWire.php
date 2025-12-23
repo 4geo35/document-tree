@@ -83,10 +83,95 @@ class ListWire extends Component
         session()->flash("document-success", "Документ успешно добавлен");
     }
 
+    public function showEdit(int $documentId): void
+    {
+        $this->resetFields();
+        $this->documentId = $documentId;
+        $document = $this->findModel();
+        if (! $document) { return; }
+        if (! $this->checkAuth("update")) { return; }
+
+        $this->title = $document->title;
+        $this->description = $document->description;
+        if ($document->file_id) {
+            $document->load("file");
+            $this->fileUrl = route("download-file", ["filename" => $document->file->filename]);
+        } else { $this->fileUrl = null; }
+        $this->displayData = true;
+    }
+
+    public function update(): void
+    {
+        $document = $this->findModel();
+        if (! $document) { return; }
+        if (! $this->checkAuth("update")) { return; }
+        $this->validate();
+
+        $document->update([
+            "title" => $this->title,
+            "description" => $this->description,
+        ]);
+        $document->livewireFile($this->file);
+        session()->flash("document-success", "Документ успешно обновлен");
+        $this->closeData();
+    }
+
     public function closeDelete(): void
     {
         $this->resetFields();
         $this->displayDelete = false;
+    }
+
+    public function showDelete(int $documentId): void
+    {
+        $this->resetFields();
+        $this->documentId = $documentId;
+        $document = $this->findModel();
+        if (! $document) { return; }
+        if (! $this->checkAuth("delete")) { return; }
+        $this->displayDelete = true;
+    }
+
+    public function confirmDelete(): void
+    {
+        $document = $this->findModel();
+        if (! $document) { return; }
+        if (! $this->checkAuth("delete")) { return; }
+        $document->delete();
+        session()->flash("document-success", "Документ успешно удален");
+        $this->closeDelete();
+    }
+
+    public function showOrder(): void
+    {
+        if (! $this->checkAuth("order")) { return; }
+        $this->displayOrder = true;
+        $this->setDocumentList();
+        $this->dispatch("update-list");
+    }
+
+    public function reorderItems(array $newOrder): void
+    {
+        if (! $this->checkAuth("order")) { return; }
+
+        foreach ($newOrder as $priority => $id) {
+            $this->documentId = $id;
+            $document = $this->findModel();
+            if (! $document) { continue; }
+            $document->priority = $priority;
+            $document->save();
+        }
+
+        $this->resetFields();
+        $this->setDocumentList();
+    }
+
+    protected function setDocumentList(): void
+    {
+        $this->list = $this->model->documents()
+            ->select("id", "title", "priority")
+            ->orderBy("priority")
+            ->get();
     }
 
     protected function resetFields(): void

@@ -4,23 +4,15 @@
         <div class="card">
             <div class="card-header border-b-0">
                 <div class="space-y-indent-half">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-medium text-2xl">Документы</h2>
-                        @can("create", $modelClass)
-                            <button type="button" class="btn btn-primary px-btn-x-ico lg:px-btn-x" wire:click="showCreate">
-                                <x-tt::ico.circle-plus />
-                                <span class="hidden lg:inline-block pl-btn-ico-text">Добавить</span>
-                            </button>
-                        @endcan
-                    </div>
-
-                    <x-tt::notifications.error prefix="document-" />
-                    <x-tt::notifications.success prefix="document-" />
+                    @include("dt::admin.documents.includes.list-title", compact("modelClass"))
+                    <x-tt::notifications.error prefix="document-"/>
+                    <x-tt::notifications.success prefix="document-"/>
                 </div>
             </div>
 
             @include("dt::admin.documents.includes.table")
             @include("dt::admin.documents.includes.table-modals")
+            @include("dt::admin.documents.includes.order-modal")
         </div>
     @endcan
 </div>

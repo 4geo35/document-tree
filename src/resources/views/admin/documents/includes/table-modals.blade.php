@@ -31,6 +31,13 @@
                        class="form-control {{ $errors->has('file') ? 'border-danger' : '' }}"
                        wire:loading.attr="disabled"
                        wire:model.lazy="file">
+                @if ($fileUrl)
+                    <div class="mt-2">
+                        <a href="{{ $fileUrl }}" target="_blank" class="text-primary hover:text-primary-hover">
+                            Просмотр\Скачать
+                        </a>
+                    </div>
+                @endif
                 <x-tt::form.error name="file"/>
             </div>
 
