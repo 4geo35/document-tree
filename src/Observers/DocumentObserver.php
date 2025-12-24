@@ -17,4 +17,11 @@ class DocumentObserver
         if (! $priority) { $priority = 1; }
         $document->priority = $priority + 1;
     }
+
+    public function deleted(DocumentInterface $document): void
+    {
+        foreach ($document->signatires as $signatire) {
+            $signatire->delete();
+        }
+    }
 }

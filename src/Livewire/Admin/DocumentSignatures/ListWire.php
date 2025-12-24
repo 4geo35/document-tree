@@ -45,7 +45,7 @@ class ListWire extends Component
     public function rules(): array
     {
         return [
-            "file" => ["required", "file"],
+            "file" => [$this->signatureId ? "nullable" : "required", "file"],
             "title" => ["required", "string", "max:255"],
             "person" => ["nullable", "string", "max:255"],
             "position" => ["nullable", "string", "max:255"],
@@ -72,7 +72,8 @@ class ListWire extends Component
 
     public function render(): View
     {
-        return view("dt::livewire.admin.document-signatures.list-wire");
+        $signatures = $this->document->signatires()->orderBy("created_at")->get();
+        return view("dt::livewire.admin.document-signatures.list-wire", compact("signatures"));
     }
 
     public function closeData(): void
@@ -98,7 +99,7 @@ class ListWire extends Component
             "person" => $this->person,
             "position" => $this->position,
             "organization" => $this->organization,
-            "date" => $this->date ?? null,
+            "date" => empty($this->date) ? null : $this->date,
             "certificate" => $this->certificate,
             "issued" => $this->issued,
             "period" => $this->period,
@@ -111,10 +112,75 @@ class ListWire extends Component
         session()->flash("signature-success", "Подпись успешно добавлена");
     }
 
+    public function showEdit(int $signatureId): void
+    {
+        $this->resetFields();
+        $this->signatureId = $signatureId;
+        $signature = $this->findModel();
+        if (! $signature) { return; }
+        if (! $this->checkAuth("update", $signature)) { return; }
+
+        $this->title = $signature->title;
+        $this->person = $signature->person;
+        $this->position = $signature->position;
+        $this->organization = $signature->organization;
+        $this->date = $signature->date ?? "";
+        $this->certificate = $signature->certificate;
+        $this->issued = $signature->issued;
+        $this->period = $signature->period;
+        if ($signature->file_id) {
+            $signature->load("file");
+            $this->fileUrl = route("download-file", ["filename" => $signature->file->filename]);
+        } else { $this->fileUrl = null; }
+        $this->displayData = true;
+    }
+
+    public function update(): void
+    {
+        $signature = $this->findModel();
+        if (! $signature) { return; }
+        if (! $this->checkAuth("update", $signature)) { return; }
+        $this->validate();
+
+        $signature->update([
+            "title" => $this->title,
+            "person" => $this->person,
+            "position" => $this->position,
+            "organization" => $this->organization,
+            "date" => empty($this->date) ? null : $this->date,
+            "certificate" => $this->certificate,
+            "issued" => $this->issued,
+            "period" => $this->period,
+        ]);
+        $signature->livewireFile($this->file);
+        $this->closeData();
+        session()->flash("signature-success", "Подпись успешно обновлена");
+    }
+
     public function closeDelete(): void
     {
         $this->resetFields();
         $this->displayDelete = false;
+    }
+
+    public function showDelete(int $signatureId): void
+    {
+        $this->resetFields();
+        $this->signatureId = $signatureId;
+        $signature = $this->findModel();
+        if (! $signature) { return; }
+        if (! $this->checkAuth("delete", $signature)) { return; }
+        $this->displayDelete = true;
+    }
+
+    public function confirmDelete(): void
+    {
+        $signature = $this->findModel();
+        if (! $signature) { return; }
+        if (! $this->checkAuth("delete", $signature)) { return; }
+        $signature->delete();
+        session()->flash("signature-success", "Подпись успешно удалена");
+        $this->closeDelete();
     }
 
     #[On("show-signatures")]
@@ -157,7 +223,7 @@ class ListWire extends Component
 
     protected function resetFields(): void
     {
-        $this->reset("signatureId");
+        $this->reset("signatureId", "file", "fileUrl", "title", "person", "position", "organization", "date", "certificate", "issued", "period");
     }
 
     protected function findModel(): ?DocumentSignatureInterface

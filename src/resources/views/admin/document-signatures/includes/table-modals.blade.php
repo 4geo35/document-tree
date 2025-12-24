@@ -103,10 +103,10 @@
                 <textarea id="signatureIssued"
                           class="form-control !min-h-52 {{ $errors->has('issued') ? 'border-danger' : '' }}"
                           rows="10"
-                          wire:model="description">
+                          wire:model="issued">
                         {{ $issued }}
                 </textarea>
-                <x-tt::form.error name="description"/>
+                <x-tt::form.error name="issued"/>
             </div>
 
             <div>
