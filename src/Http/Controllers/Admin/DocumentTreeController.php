@@ -14,13 +14,13 @@ class DocumentTreeController extends Controller
     {
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
         Gate::authorize("viewAny", $modelClass);
-        return view("dt::admin.document-tree.index");
+        return view("dt::admin.document-categories.index");
     }
 
     public function show(DocumentCategoryInterface $category): View
     {
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
         Gate::authorize("viewAny", $modelClass);
-        return view("dt::admin.document-tree.show", compact("category"));
+        return view("dt::admin.document-categories.show", compact("category"));
     }
 }

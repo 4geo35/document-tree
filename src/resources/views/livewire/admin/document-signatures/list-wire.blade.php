@@ -9,6 +9,9 @@
                     <x-tt::notifications.success prefix="signature-" />
                 </div>
             </div>
+
+            @include("dt::admin.document-signatures.includes.table")
+            @include("dt::admin.document-signatures.includes.table-modals")
         </div>
     @endif
 </div>

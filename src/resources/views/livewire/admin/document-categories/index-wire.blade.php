@@ -26,5 +26,5 @@
             </div>
         </div>
     </div>
-    @include("dt::admin.document-tree.includes.modals")
+    @include("dt::admin.document-categories.includes.modals")
 </div>

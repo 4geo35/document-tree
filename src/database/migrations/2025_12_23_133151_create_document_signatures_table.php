@@ -17,14 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('document_id');
             $table->unsignedBigInteger("file_id")->nullable();
 
-            $table->string("title");
-            $table->string("person")->nullable();
-            $table->string("position")->nullable();
-            $table->string("organization")->nullable();
-            $table->date("date")->nullable();
-            $table->string("certificate")->nullable();
-            $table->text("issued")->nullable();
-            $table->string("period")->nullable();
+            $table->string("title")->comment("Заголовок");
+            $table->string("person")->nullable()->comment("Подписант");
+            $table->string("position")->nullable()->comment("Должность");
+            $table->string("organization")->nullable()->comment("Организация");
+            $table->date("date")->nullable()->comment("Дата подписания");
+            $table->string("certificate")->nullable()->comment("Сертификат");
+            $table->text("issued")->nullable()->comment("Кем выдан");
+            $table->string("period")->nullable()->comment("Период действия сертификата");
 
             $table->timestamps();
         });
