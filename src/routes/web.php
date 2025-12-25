@@ -7,7 +7,7 @@ Route::middleware(["web"])
     ->as("web.")
     ->group(function () {
         Route::prefix(config("document-tree.prefix"))
-            ->as("document-tree.")
+            ->as("document-categories.")
             ->group(function () {
                 $controllerClass = config("document-tree.customWebDocumentTreeController") ?? DocumentTreeController::class;
                 Route::get("/", [$controllerClass, "index"])->name("index");

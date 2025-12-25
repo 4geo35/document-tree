@@ -4,7 +4,11 @@ return [
     "prefix" => "documents",
     "pageTitle" => "Документы",
     "categoryPageTitle" => "Категории документов",
-    "singlePage" => false,
+    "useBreadcrumbs" => true,
+    "useH1" => true,
+    "singlePage" => false, // Если включить, то лучше поставить addToHeaderSize в значение 1
+    "addToHeaderSize" => 2,
+    "stickySidebarPosition" => "top-0",
 
     "customWebDocumentTreeController" => null,
 
@@ -29,6 +33,9 @@ return [
     "customAdminDocumentListComponent" => null,
 
     "customAdminDocumentSignatureIndexComponent" => null,
+
+    // Blade components
+    "customWebTreeSidebarComponent" => null,
 
     // Policy
     "documentCategoryTitle" => "Управление категориями документов",

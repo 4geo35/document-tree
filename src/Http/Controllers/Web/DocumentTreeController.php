@@ -16,7 +16,7 @@ class DocumentTreeController extends Controller
     {
         if (config('document-tree.singlePage')) {
             $metas = MetaActions::renderByPage(config('document-tree.prefix'));
-            $tree = DocumentCategoryActions::buildDocumentTree();
+            $tree = DocumentCategoryActions::buildNestedTree();
             return view("dt::web.document-categories.index", compact('metas', 'tree'));
         } else {
             $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
@@ -51,7 +51,7 @@ class DocumentTreeController extends Controller
 
         $renderDocumentTree = $category->show_nested || !$category->children()->select("id")->count();
 
-        if ($renderDocumentTree) { $tree = DocumentCategoryActions::buildDocumentTree($category); }
+        if ($renderDocumentTree) { $tree = DocumentCategoryActions::buildNestedTree($category); }
         else { $tree = $category->children()->select("id", "title", "slug")->orderBy("priority")->get(); }
 
         return view("dt::web.document-categories.show", compact('category', 'metas', 'parents', 'renderDocumentTree', 'tree'));

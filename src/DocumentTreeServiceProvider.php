@@ -8,6 +8,8 @@ use GIS\DocumentTree\Models\DocumentCategory;
 use GIS\DocumentTree\Observers\DocumentCategoryObserver;
 use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use GIS\DocumentTree\Observers\DocumentObserver;
+use GIS\DocumentTree\View\Components\TreeSidebarComponent;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -40,6 +42,7 @@ class DocumentTreeServiceProvider extends ServiceProvider
         $this->setPolicies();
 
         $this->addLivewireComponents();
+        $this->addBladeComponents();
     }
 
     protected function initFacades(): void
@@ -118,5 +121,11 @@ class DocumentTreeServiceProvider extends ServiceProvider
             "dt-admin-document-signature-list",
             $component ?? AdminDocumentSignaturesListWire::class
         );
+    }
+
+    protected function addBladeComponents(): void
+    {
+        $component = config("document-tree.customWebTreeSidebarComponent") ?? TreeSidebarComponent::class;
+        Blade::component("dt-tree-sidebar", $component);
     }
 }
