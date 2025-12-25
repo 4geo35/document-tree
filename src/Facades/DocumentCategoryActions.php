@@ -4,23 +4,23 @@ namespace GIS\DocumentTree\Facades;
 
 use GIS\DocumentTree\Helpers\DocumentCategoryActionsManager;
 use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
+use GIS\TraitsHelpers\Interfaces\ShouldTreeInterface;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array buildDocumentTree(DocumentCategoryInterface $category = null)
- *
- * @method static DocumentCategoryInterface findNestedChild(DocumentCategoryInterface $category)
- * @method static DocumentCategoryInterface|null findRootNested(DocumentCategoryInterface $category)
+ * @method static void cascadeShutdown(DocumentCategoryInterface $category)
  *
  * @method static array getCategoryTree(array $newOrder = null)
  * @method static bool rebuildTree(array $newOrder)
  *
- * @method static void cascadeShutdown(DocumentCategoryInterface $category)
+ * @method static array buildNestedTree(ShouldTreeInterface $item = null)
  *
- * @method static array getDocumentIds(DocumentCategoryInterface $category, bool $includeSubs = false)
- * @method static array getChildrenIds(DocumentCategoryInterface $category, bool $includeSelf = false)
+ * @method static ShouldTreeInterface findNestedChild(ShouldTreeInterface $item)
+ * @method static ShouldTreeInterface|null findRootNested(ShouldTreeInterface $item)
  *
- * @method static array getParents(DocumentCategoryInterface $list)
+ * @method static array getElementIds(ShouldTreeInterface $list, bool $includeSubs = false)
+ * @method static array getChildrenIds(ShouldTreeInterface $list, bool $includeSelf = false)
+ * @method static array getParents(ShouldTreeInterface $list)
  *
  * @see DocumentCategoryActionsManager
  */

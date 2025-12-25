@@ -6,6 +6,8 @@ return [
     "categoryPageTitle" => "Категории документов",
     "singlePage" => false,
 
+    "customWebDocumentTreeController" => null,
+
     // Admin
     "customDocumentCategoryModel" => null,
     "customDocumentCategoryModelObserver" => null,
