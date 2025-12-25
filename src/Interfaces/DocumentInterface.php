@@ -20,5 +20,5 @@ interface DocumentInterface extends Arrayable, ArrayAccess, CanBeEscapedWhenCast
     ShouldFileInterface
 {
     public function documentable(): MorphTo;
-    public function signatires(): HasMany;
+    public function signatures(): HasMany;
 }

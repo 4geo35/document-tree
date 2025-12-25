@@ -20,8 +20,8 @@ class DocumentObserver
 
     public function deleted(DocumentInterface $document): void
     {
-        foreach ($document->signatires as $signatire) {
-            $signatire->delete();
+        foreach ($document->signatures as $signature) {
+            $signature->delete();
         }
     }
 }

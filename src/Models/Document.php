@@ -25,7 +25,7 @@ class Document extends Model implements DocumentInterface
         return $this->morphTo();
     }
 
-    public function signatires(): HasMany
+    public function signatures(): HasMany
     {
         $modelClass = config("document-tree.customDocumentSignatureModel") ?? DocumentSignature::class;
         return $this->hasMany($modelClass, "document_id");

@@ -72,7 +72,7 @@ class ListWire extends Component
 
     public function render(): View
     {
-        $signatures = $this->document->signatires()->orderBy("created_at")->get();
+        $signatures = $this->document->signatures()->orderBy("created_at")->get();
         return view("dt::livewire.admin.document-signatures.list-wire", compact("signatures"));
     }
 
@@ -94,7 +94,7 @@ class ListWire extends Component
         if (! $this->checkAuth("create")) { return; }
         $this->validate();
 
-        $signature = $this->document->signatires()->create([
+        $signature = $this->document->signatures()->create([
             "title" => $this->title,
             "person" => $this->person,
             "position" => $this->position,
