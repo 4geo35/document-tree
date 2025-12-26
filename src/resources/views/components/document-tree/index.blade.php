@@ -17,8 +17,8 @@
 
             @include("dt::web.document-categories.includes.short", ["model" => $model])
 
-            @foreach($treeItem["documents"] as $key => $item)
-                <x-dt::document-tree.item :$item :$key />
+            @foreach($treeItem["documents"] as $key => $document)
+                <x-dt::document :$document :$key />
             @endforeach
 
             @include("dt::web.document-categories.includes.description", ["model" => $model])
