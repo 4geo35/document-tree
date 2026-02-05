@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col w-full lg:w-1/3 order-last lg:order-first mb-indent">
-                <div class="sticky {{ config('document-tree.stickySidebarPosition') }}">
+                <div class="sticky {{ config('document-tree.stickySidebarPosition') }} lg:max-h-dvh overflow-y-auto beautify-scrollbar">
                     <x-dt-tree-sidebar />
                 </div>
             </div>

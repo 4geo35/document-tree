@@ -44,7 +44,7 @@ class DocumentCategoryActionsManager
         }
     }
 
-    protected function expandRawDataQueryWith(Builder $query, ShouldTreeInterface $item): void
+    protected function expandRawDataQueryWith(Builder $query, ShouldTreeInterface $item = null): void
     {
         $query->with(["documents" => function ($query) {
             $query->with("signatures");

@@ -1,6 +1,10 @@
 @props(["tree", "depth"])
 @php
-    $sizeClasses = $depth <= 0 ? 'text-lg font-semibold' : ''; // TODO: change size for more depth
+    $sizeClasses = $depth <= 0 ? 'text-lg font-semibold' : '';
+    $spacingClasses = match ($depth) {
+        0 => "pt-indent-sm space-y-indent-sm",
+        default => "pt-indent-xs space-y-indent-xs",
+    };
 @endphp
 
 @foreach($tree as $child)
@@ -13,13 +17,13 @@
                     <x-tt::ico.arrow-down />
                 </span>
             </button>
-            <ul x-collapse x-show="expanded" class="ml-indent-half mb-2">
+            <ul x-collapse x-show="expanded" class="ml-5 {{ $spacingClasses }}">
                 @include("dt::web.document-categories.components.tree-sidebar.children", ["tree" => $child["children"], "depth" => $depth + 1])
             </ul>
         </li>
     @else
         <li class="">
-            @php($href = $useAnchors ? "#list-{$child['slug']}" : route('web.document-categories.show', ['category' => $child['model']]))
+            @php($href = $useAnchors ? "#list-{$child['slug']}" : route('web.price-lists.show', ['priceList' => $child['model']]))
             <a href="{{ $href }}"
                class="{{ $sizeClasses }} hover:text-primary-hover {{ $child['isActive'] ? 'text-primary' : '' }}">
                 {{ $child["webTitle"] }}

@@ -10,7 +10,7 @@
                 @php($headerClass = $depth <= 2 ? "mb-indent" : "mb-indent-half")
                 <x-dynamic-component :component="$headerComponent"
                                      id="list-{{ $model->slug }}"
-                                     class="{{ $headerClass }} pb-2 border-b border-stroke">
+                                     class="{{ $headerClass }}">
                     {{ $model->title }}
                 </x-dynamic-component>
             @endif
