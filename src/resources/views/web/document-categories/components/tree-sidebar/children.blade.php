@@ -23,7 +23,7 @@
         </li>
     @else
         <li class="">
-            @php($href = $useAnchors ? "#list-{$child['slug']}" : route('web.document-categories.show', ['priceList' => $child['model']]))
+            @php($href = $useAnchors ? "#list-{$child['slug']}" : route('web.document-categories.show', ['category' => $child['model']]))
             <a href="{{ $href }}"
                class="{{ $sizeClasses }} hover:text-primary-hover {{ $child['isActive'] ? 'text-primary' : '' }}">
                 {{ $child["webTitle"] }}
