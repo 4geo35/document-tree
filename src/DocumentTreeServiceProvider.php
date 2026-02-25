@@ -26,9 +26,6 @@ class DocumentTreeServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__ . '/config/document-tree.php', 'document-tree');
 
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/routes/admin.php');
-
         $this->initFacades();
         $this->bindInterfaces();
     }
@@ -36,6 +33,9 @@ class DocumentTreeServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'dt');
+
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/admin.php');
 
         $this->expandConfiguration();
         $this->observeModels();
