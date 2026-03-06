@@ -8,7 +8,6 @@ return [
     "useH1" => true,
     "singlePage" => false, // Если включить, то лучше поставить addToHeaderSize в значение 1
     "addToHeaderSize" => 2,
-    "stickySidebarPosition" => "top-0",
 
     "customWebDocumentTreeController" => null,
 
