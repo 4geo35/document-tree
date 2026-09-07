@@ -3,7 +3,7 @@
     @foreach($tree as $treeItem)
         @php($model = $treeItem["model"])
         <div class="my-indent-half">
-            @if ($depth > 0 || config("price-list.singlePage"))
+            @if ($depth > 0 || config("document-tree.singlePage"))
                 @php($addToHeaderSize = config("document-tree.addToHeaderSize"))
                 @php($headerSize = $depth <= 3 ? $depth + $addToHeaderSize : 3 + $addToHeaderSize)
                 @php($headerComponent = "tt::h" . $headerSize)
