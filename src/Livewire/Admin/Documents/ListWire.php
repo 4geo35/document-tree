@@ -204,7 +204,7 @@ class ListWire extends Component
         return $document;
     }
 
-    protected function checkAuth(string $action, DocumentInterface $document = null): bool
+    protected function checkAuth(string $action, ?DocumentInterface $document = null): bool
     {
         try {
             $modelClass = config("document-tree.customDocumentModel") ?? Document::class;

@@ -21,7 +21,7 @@ class IndexWire extends Component
         return view("dt::livewire.admin.document-categories.index-wire", compact("tree"));
     }
 
-    public function showCreate(int $parentId = null): void
+    public function showCreate(?int $parentId = null): void
     {
         $this->resetFields();
         if (! $this->checkAuth("create")) { return; }

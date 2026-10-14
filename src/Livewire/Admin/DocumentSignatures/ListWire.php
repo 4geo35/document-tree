@@ -214,7 +214,7 @@ class ListWire extends Component
         $this->document->fresh();
     }
 
-    protected function setFirstDocument(int $id = null): void
+    protected function setFirstDocument(?int $id = null): void
     {
         $query = $this->model->documents();
         if ($id) { $query->where('id', '!=', $id); }
@@ -241,7 +241,7 @@ class ListWire extends Component
         return $signature;
     }
 
-    public function checkAuth(string $action, DocumentSignatureInterface $signature = null): bool
+    public function checkAuth(string $action, ?DocumentSignatureInterface $signature = null): bool
     {
         try {
             $modelClass = config("document-tree.customDocumentSignatureModel") ?? DocumentSignature::class;

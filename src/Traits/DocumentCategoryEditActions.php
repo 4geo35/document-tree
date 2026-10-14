@@ -152,7 +152,7 @@ trait DocumentCategoryEditActions
         $this->reset("title", "slug", "short", "description", "info", "showNested", "categoryId", "parentId");
     }
 
-    protected function checkAuth(string $action, DocumentCategoryInterface $category = null): bool
+    protected function checkAuth(string $action, ?DocumentCategoryInterface $category = null): bool
     {
         try {
             $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
@@ -166,7 +166,7 @@ trait DocumentCategoryEditActions
         }
     }
 
-    protected function findModel(int $id = null): ?DocumentCategoryInterface
+    protected function findModel(?int $id = null): ?DocumentCategoryInterface
     {
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
         if ($id) { $category = $modelClass::find($id); }
