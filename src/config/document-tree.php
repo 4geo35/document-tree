@@ -1,17 +1,15 @@
 <?php
 
 return [
+    // Settings
     "prefix" => "documents",
-    "pageTitle" => "Документы",
     "categoryPageTitle" => "Категории документов",
     "useBreadcrumbs" => true,
     "useH1" => true,
     "singlePage" => false, // Если включить, то лучше поставить addToHeaderSize в значение 1
     "addToHeaderSize" => 2,
 
-    "customWebDocumentTreeController" => null,
-
-    // Admin
+    // Models
     "customDocumentCategoryModel" => null,
     "customDocumentCategoryModelObserver" => null,
 
@@ -20,12 +18,15 @@ return [
 
     "customDocumentSignatureModel" => null,
 
+    // Controllers
+    "customWebDocumentTreeController" => null,
+
     "customAdminDocumentTreeController" => null,
 
     // Facades
     "customDocumentTreeActionsManager" => null,
 
-    // Components
+    // Wire Components
     "customAdminDocumentCategoryIndexComponent" => null,
     "customAdminDocumentCategoryShowComponent" => null,
 

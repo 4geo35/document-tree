@@ -5,11 +5,15 @@ namespace GIS\DocumentTree\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use GIS\DocumentTree\Interfaces\DocumentCategoryInterface;
 use GIS\DocumentTree\Models\DocumentCategory;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class DocumentTreeController extends Controller
 {
+    /**
+     * @throws AuthorizationException
+     */
     public function index(): View
     {
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
@@ -17,6 +21,9 @@ class DocumentTreeController extends Controller
         return view("dt::admin.document-categories.index");
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function show(DocumentCategoryInterface $category): View
     {
         $modelClass = config("document-tree.customDocumentCategoryModel") ?? DocumentCategory::class;
