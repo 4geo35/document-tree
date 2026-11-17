@@ -15,7 +15,7 @@
             </button>
             <div class="bg-[#F4F4F4] z-10 absolute left-0 top-10 min-w-[270px] px-indent py-indent-half rounded-base shadow-md border border-stroke"
                  x-show="hovered || show" style="display: none">
-                <div class="prose max-w-0">{!! $document->markdown !!}</div>
+                <div class="prose">{!! $document->markdown !!}</div>
             </div>
         </div>
     @else
